@@ -13,8 +13,9 @@ class CreateClockingsTable extends Migration
      */
     public function up()
     {
-        Schema::create('clockings', function (Blueprint $table) {
-            $table->increments('id');
+        Schema::create('checkinout', function (Blueprint $table) {
+            $table->increments('USERID');
+            $table->datetime('CHECKTIME');
             $table->timestamps();
         });
     }
@@ -26,6 +27,6 @@ class CreateClockingsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clockings');
+        Schema::dropIfExists('checkinout');
     }
 }

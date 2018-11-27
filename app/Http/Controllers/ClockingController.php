@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Clocking;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ClockingController extends Controller
 {
@@ -14,7 +16,12 @@ class ClockingController extends Controller
      */
     public function index()
     {
-        //
+        $clockings = DB::table('checkinout')
+                    ->orderby('checktime', 'DESC')
+                    ->whereDate('checktime', Carbon::today())
+                    ->get();
+
+        return view('clocking.index', ['clockings' => $clockings]);
     }
 
     /**
